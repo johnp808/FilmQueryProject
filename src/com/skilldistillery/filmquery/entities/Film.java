@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Film {
@@ -7,32 +8,43 @@ public class Film {
 	private String title;
 	private String description;
 	private Integer releaseYear;
-	private int languageId;
+	private String language;
 	private int rentalDuration;
 	private double rentalRate;
 	private Integer length;
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	
+	private List<Actor> actors;
+
 	public Film() {
 		super();
 	}
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures) {
+	public Film(int id, String title, String description, Integer releaseYear, String language, int rentalDuration,
+			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures,
+			List<Actor> actors) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
-		this.languageId = languageId;
+		this.language = language;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+		this.actors = actors;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public int getId() {
@@ -45,6 +57,14 @@ public class Film {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 	public void setTitle(String title) {
@@ -65,14 +85,6 @@ public class Film {
 
 	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
-	}
-
-	public int getLanguageId() {
-		return languageId;
-	}
-
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
 	}
 
 	public int getRentalDuration() {
@@ -125,7 +137,7 @@ public class Film {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, id, languageId, length, rating, releaseYear, rentalDuration, rentalRate,
+		return Objects.hash(description, id, language, length, rating, releaseYear, rentalDuration, rentalRate,
 				replacementCost, specialFeatures, title);
 	}
 
@@ -138,7 +150,7 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return Objects.equals(description, other.description) && id == other.id && languageId == other.languageId
+		return Objects.equals(description, other.description) && id == other.id && language == other.language
 				&& Objects.equals(length, other.length) && Objects.equals(rating, other.rating)
 				&& Objects.equals(releaseYear, other.releaseYear) && rentalDuration == other.rentalDuration
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
@@ -148,13 +160,12 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
+		return "Film id: \n" + id + "\n\nTitle: \n" + title + "\n\nDescription: \n" + description
+				+ "\n\nRelease Year: \n" + releaseYear + "\n\nLanguage: \n" + language + "\n\nRental Duration: \n"
+				+ rentalDuration + " Days\n\nRental Rate: \n$" + rentalRate + "\n\nLength: \n" + length
+				+ " Minutes\n\nReplacement Cost: \n$" + replacementCost + "\n\nRating: \n" + rating
+				+ "\n\nSpecial Features: \n" + specialFeatures + "\n\nCast: \n" + actors
+				+ "\n----------------------------------------------------------------------\n\n";
 	}
-	
-		
-	
-	
+
 }
